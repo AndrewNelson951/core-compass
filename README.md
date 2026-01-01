@@ -1,39 +1,60 @@
-# Core Compass 🧭
+# Core Compass
 
-**Find your direction. Live your purpose.**
+Core Compass is an interactive single-page app that guides users through a structured values-clarification exercise.
 
-Welcome to **Core Compass**, a beautiful, private, and interactive tool designed to help you discover the values that define who you are. This isn't just about picking words from a list—it's about crafting an actionable roadmap for your authentic self!
+The focus is engagement, flow, and reflection, not content volume.
 
-## 🌟 Why Core Compass?
-
-In a noisy world, it's easy to lose sight of what truly matters. Core Compass helps you tune out the distractions and tune into _you_. Whether you're at a crossroads, planning your next big career move, or simply seeking more clarity, this tool guides you through a proven process to identify what drives you.
-
-- **Self-Discovery Made Simple**: Effortless drag-and-drop interface.
-- **Action-Oriented**: We don't just list values; we turn them into _verbs_ so you can `Live`, `Practice`, and `Champion` them every day.
-- **100% Private**: Your journey is yours alone. No data is stored, tracked, or sent to any server.
-
-## 🚀 The Journey
-
-Your path to clarity happens in 5 exciting steps:
-
-1.  **Discover**: Browse a curated list of values and select the ones that spark joy and resonance.
-2.  **Organize**: Drag and drop your values into meaningful clusters. See the patterns in your life emerge!
-3.  **Define**: Crystallize your groups by choosing a "theme" word that captures the essence of each cluster.
-4.  **Activate**: This is where the magic happens. Turn a static noun (e.g., "Creativity") into a dynamic power-statement (e.g., "Nurture Creativity").
-5.  **Manifest**: Get your personalized Core Values Manifesto. Copy it, print it, stick it on your mirror!
-
-## 🛠️ Tech & Design
-
-Built with a focus on speed, aesthetics, and simplicity:
-
-- **Vanilla HTML5, CSS3, ES6 JavaScript**: No bloat, no frameworks, just pure performance.
-- **Glassmorphism UI**: A serene, modern interface designed to keep you focused and calm.
-- **Draggable Interactions**: Intuitive grouping that feels tangible and satisfying.
-
-## 💡 Inspiration
-
-This tool was inspired by the excellent exercise "Live Your Core Values To Increase Your Success" by [TapRoot](https://taproot.com/live-your-core-values-exercise-to-increase-your-success/). It builds upon those solid psychological foundations with a modern digital twist.
+Live demo: https://core-compass.andrewnelson.dev/
 
 ---
 
-_Ready to find your North Star? Open `index.html` and start your journey today!_ ✨
+## Inspiration
+
+This project adapts a well-known values clarification exercise into a guided web experience.
+
+The original exercise works on paper. This prototype explores whether UX can improve completion and clarity.
+
+---
+
+## The problem
+
+Abstract frameworks often fail because they are hard to apply. Reflection tools need structure and momentum to stay useful.
+
+---
+
+## The hypothesis
+
+Guided interaction and visual grouping increase follow-through and insight compared to static worksheets.
+
+---
+
+## What this prototype tests
+
+• Whether users complete reflective exercises more often  
+• How drag and drop grouping affects thinking  
+• How phrasing values as actions changes perception  
+• Where users hesitate or abandon the flow
+
+---
+
+## What this is not
+
+• Not therapy software  
+• Not a coaching platform  
+• Not production hardened
+
+It is an experiment in applied thinking.
+
+---
+
+## Current status
+
+Functional prototype focused on UX flow and interaction design.
+
+---
+
+## Why this exists
+
+I translate abstract ideas into working software to test whether they hold up in practice. This project explores how decision quality tools behave when made interactive.
+
+Built to test an idea, not to ship a product.

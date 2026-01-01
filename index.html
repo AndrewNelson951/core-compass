@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Core Compass</title>
+<title>Core Compass - Find Your Direction</title>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
@@ -29,49 +29,82 @@
         background: linear-gradient(135deg, var(--bg-grad-start), var(--bg-grad-end));
         color: var(--text-main);
         min-height: 100vh;
-        line-height: 1.5;
+        line-height: 1.6;
     }
 
     .container {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 40px;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(12px);
+        max-width: 800px;
+        margin: 60px auto;
+        padding: 50px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
         border-radius: 24px;
         box-shadow: var(--shadow-lg);
         border: 1px solid rgba(255, 255, 255, 0.6);
     }
 
-    .screen {
-        display: none;
-        animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .visible {
-        display: block;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1, h2 {
+    h1, h2, h3 {
         color: #111827;
         font-weight: 700;
         letter-spacing: -0.025em;
+        margin-top: 1.5em;
         margin-bottom: 0.5em;
     }
     
-    h1 { font-size: 2.5rem; margin-top: 0; }
-    h2 { font-size: 1.875rem; }
+    h1 { 
+        font-size: 3rem; 
+        margin-top: 0; 
+        background: linear-gradient(to right, #4f46e5, #9333ea);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.2em;
+    }
+    
+    h2 { 
+        font-size: 1.75rem; 
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 0.3em;
+        margin-top: 2em;
+    }
+    
+    h3 { font-size: 1.25rem; }
+
+    .subtitle {
+        font-size: 1.5rem;
+        color: #4b5563;
+        font-weight: 300;
+        margin-bottom: 2rem;
+    }
 
     p {
         color: var(--text-sub);
         font-size: 1.125rem;
-        max-width: 65ch;
+        margin-bottom: 1rem;
+    }
+
+    ul, ol {
+        color: var(--text-sub);
+        font-size: 1.1rem;
+        padding-left: 1.5rem;
         margin-bottom: 1.5rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    strong {
+        color: var(--text-main);
+        font-weight: 600;
+    }
+
+    code {
+        background: #f1f5f9;
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: #e11d48;
+        font-family: monospace;
     }
 
     a {
@@ -82,477 +115,104 @@
     }
     a:hover { color: var(--primary-hover); text-decoration: underline; }
 
-    button {
-        padding: 0.75rem 1.5rem;
-        margin: 10px 8px 10px 0;
-        cursor: pointer;
+    .cta-container {
+        margin-top: 3rem;
+        text-align: center;
+        background: linear-gradient(to right, #e0e7ff, #f3f4f6);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        border: 1px solid #c7d2fe;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: 1rem 2.5rem;
         background-color: var(--primary);
         color: white;
-        border: none;
-        border-radius: var(--radius-md);
-        font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.2s ease;
-        box-shadow: var(--shadow-sm);
-    }
-
-    button:hover {
-        background-color: var(--primary-hover);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
-    }
-
-    button:active { transform: translateY(0); }
-
-    /* Values Grid */
-    .values-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin: 30px 0;
-    }
-
-    .value-card {
-        padding: 10px 16px;
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: var(--radius-md);
-        cursor: pointer;
-        user-select: none;
-        transition: all 0.15s ease;
-        font-size: 0.95rem;
-        color: #374151;
-        box-shadow: var(--shadow-sm);
-    }
-
-    .value-card:hover {
-        border-color: #c7d2fe;
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-    }
-
-    .value-card.selected {
-        background-color: #e0e7ff;
-        border-color: var(--primary);
-        color: var(--primary-hover);
-        font-weight: 600;
-        box-shadow: 0 0 0 1px var(--primary);
-    }
-
-    /* Grouping Area */
-    .group-area {
-        margin: 10px 0;
-        padding: 12px;
-        border: 2px dashed #9ca3af;
-        border-radius: var(--radius-lg);
-        min-height: 80px;
-        background: #f9fafb;
-        transition: all 0.2s;
-    }
-
-    .group-area strong { color: #111827; display: block; margin-bottom: 4px; }
-
-    .group-area.drag-over {
-        background: #eff6ff;
-        border-color: var(--primary);
-        border-style: solid;
-        box-shadow: inset 0 0 0 2px rgba(99, 102, 241, 0.2);
-    }
-
-    .draggable {
-        display: inline-block;
-        padding: 4px 10px;
-        margin: 2px;
-        background: white;
-        border: 1px solid #d1d5db;
+        text-decoration: none;
         border-radius: var(--radius-full);
-        cursor: grab;
-        user-select: none;
-        font-size: 0.85rem;
-        box-shadow: var(--shadow-sm);
-        transition: transform 0.1s;
-    }
-    
-    .draggable:hover { border-color: #9ca3af; }
-    .draggable:active { cursor: grabbing; }
-    .draggable.dragging { opacity: 0.5; transform: scale(0.95); }
-
-    #ungroupedContainer {
-        min-height: 60px;
-        padding: 12px;
-        border: 1px solid #e5e7eb;
-        background: white;
-        margin-bottom: 15px;
-        border-radius: var(--radius-lg);
-        box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.05);
-    }
-
-    /* Labels */
-    .label-btn {
-        padding: 8px 16px;
-        margin: 6px;
-        background: white;
-        border: 1px solid #d1d5db;
-        border-radius: var(--radius-full);
-        cursor: pointer;
-        display: inline-block;
-        user-select: none;
-        color: #4b5563;
-        transition: all 0.2s;
-        font-weight: 500;
-    }
-
-    .label-btn:hover {
-        border-color: #9ca3af;
-        background: #f3f4f6;
-    }
-
-    .label-btn.selected {
-        background: #fffbeb; /* Amber-50 */
-        border-color: #f59e0b; /* Amber-500 */
-        color: #92400e; /* Amber-800 */
-        font-weight: 700;
-        box-shadow: 0 0 0 2px #fcd34d; /* Ring */
-    }
-    
-    .group-label-container {
-        background: white;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-sm);
-        border: 1px solid #f3f4f6;
-    }
-    
-    .group-label-container p {
-        margin-bottom: 0.5rem;
-    }
-
-    /* Inputs */
-    input[type="text"] {
-        padding: 12px 16px;
-        margin: 10px 0;
-        width: 100%;
-        border: 1px solid #d1d5db;
-        border-radius: var(--radius-md);
-        font-size: 1rem;
-        font-family: inherit;
-        box-sizing: border-box;
-        transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    input:focus {
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    }
-    
-    input::placeholder {
-        color: #d3d4d6;
-        opacity: 1;
-    }
-
-    /* Summary */
-    .summary-list {
-        list-style: none;
-        padding: 0;
-        display: grid;
-        gap: 16px;
-    }
-
-    .summary-list li {
-        background: white;
-        padding: 16px 20px;
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-sm);
-        border-left: 5px solid var(--primary);
+        font-weight: 600;
         font-size: 1.25rem;
-        color: #111827;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
+        transition: all 0.2s ease;
+        box-shadow: var(--shadow-md);
     }
 
-    .disclaimer {
-        font-size: 0.85rem;
-        color: #9ca3af;
-        margin-top: 40px;
-        text-align: center;
-        border-top: 1px solid #e5e7eb;
-        padding-top: 20px;
+    .btn-primary:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+    }
+
+    blockquote {
+        border-left: 4px solid var(--primary);
+        margin: 1.5em 0;
+        padding-left: 1em;
+        font-style: italic;
+        color: #6b7280;
+    }
+    
+    .tech-pill {
+        display: inline-block;
+        background: #eff6ff;
+        color: #1e40af;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-right: 0.5rem;
+        border: 1px solid #bfdbfe;
     }
 </style>
 </head>
 <body>
 
 <div class="container">
+    <h1>Core Compass 🧭</h1>
+    <div class="subtitle">Find your direction. Live your purpose.</div>
 
-<div id="welcome" class="screen visible">
-<h1>Find Your Core Values</h1>
-<p>This tool for your personal useis inspired by <a href="https://taproot.com/live-your-core-values-exercise-to-increase-your-success/" target="_blank">
-Live Your Core Values To Increase Your Success</a>. I hope it's helpful for you. (I'm not affiliated with the site in any way.) </p>
-<p>Best of luck, I'm cheering you on!</p>
-<p style="font-weight: 600; color: #4f46e5;">[1/5]</p>
-<p>Let's find the values that mean the most to you, and determine how you show up in the world.</p>
-<button onclick="goTo('values')">Start</button>
-<div class="disclaimer">
-    <p><strong>Disclaimer:</strong> No user information is saved or stored between sessions. This tool is for personal non-commercial use only.</p>
-</div>
-</div>
+    <p>Welcome to <strong>Core Compass</strong>, a beautiful, private, and interactive tool designed to help you discover the values that define who you are. This isn't just about picking words from a list—it's about crafting an actionable roadmap for your authentic self!</p>
 
-<div id="values" class="screen">
-<h2>Determine Your Core Values</h2>
-<p>Choose every core value that resonates with you. Do not overthink your selection. 
-  Simply select the words that feel like a core value to you personally.</p>
-<div class="values-grid" id="valuesGrid"></div>
-<p>Selected: <span id="selectedCount">0</span></p>
-<button onclick="goTo('welcome')">Back</button>
-<button onclick="goTo('grouping')">Next</button>
-</div>
+    <div class="cta-container">
+        <p style="margin-bottom: 1.5rem; font-weight: 500; color: #374151;">Ready to find your North Star?</p>
+        <a href="core.html" class="btn-primary">Start Your Journey ✨</a>
+    </div>
 
-<div id="grouping" class="screen">
-<h2>Group Similar Values</h2>
-<p>[2/5]</p>
-<p>Group them in a way that makes sense to you, personally. Create a maximum of five groupings.</p>
-<div id="ungroupedContainer" ondrop="drop(event, -1)" ondragover="allowDrop(event)"></div>
-<div id="groupsContainer"></div>
-<button onclick="goTo('values')">Back</button>
-<button onclick="goTo('labels')">Next</button>
-</div>
-
-<div id="labels" class="screen">
-<h2>Label Your Groups</h2>
-<p>[3/5]</p>
-<p>Choose one word within each group that represents the label for the entire group. You are defining the answer that is right for you.</p>
-<div id="labelInputs"></div>
-<button onclick="goTo('grouping')">Back</button>
-<button onclick="goTo('actions')">Next</button>
-</div>
-
-<div id="actions" class="screen">
-<h2>Add a Verb</h2>
-<p>[4/5]</p>
-<p>Add a verb to each value so you can see what it looks like as an actionable core value. This will guide you in the actions you need to take to feel like you are truly living on purpose.</p>
-<div id="actionInputs"></div>
-<button onclick="goTo('labels')">Back</button>
-<button onclick="showSummary()">Finish</button>
-</div>
-
-<div id="summary" class="screen">
-<h2>Post Your Core Values</h2>
-<p>[5/5]</p>
-<p>Post your core values where you see them when faced with decisions. Write them in your planner or put them on a sticky note.</p>
-<p>Let the values guide you in the actions you need to take to feel like you are truly living on purpose.</p>
-<ul class="summary-list" id="summaryList"></ul>
-<button onclick="goTo('actions')">Back</button>
-<button onclick="copySummary()">Copy to Clipboard</button>
-<button onclick="goTo('welcome')">Start Over</button>
-<p></p>
-<p>Let the people at TapRoot know if you <a href="https://taproot.com/live-your-core-values-exercise-to-increase-your-success/">liked their work</a>.</p>
-</div>
-
-
-<script>
-let allValues = [
-"Abundance","Acceptance","Accountability","Achievement","Adventure","Advocacy","Ambition","Appreciation",
-"Attractiveness","Autonomy","Balance","Being the Best","Benevolence","Boldness","Brilliance","Calmness",
-"Caring","Challenge","Charity","Cheerfulness","Cleverness","Collaboration","Community","Commitment",
-"Compassion","Consistency","Contribution","Cooperation","Creativity","Credibility","Curiosity","Daring",
-"Decisiveness","Dedication","Dependability","Diversity","Empathy","Encouragement","Enthusiasm","Ethics",
-"Excellence","Expressiveness","Fairness","Family","Flexibility","Friendships","Freedom","Fun","Generosity",
-"Grace","Growth","Happiness","Health","Honesty","Humility","Humor","Inclusiveness","Independence",
-"Individuality","Innovation","Inspiration","Intelligence","Intuition","Joy","Kindness","Knowledge",
-"Leadership","Learning","Love","Loyalty","Making a Difference","Mindfulness","Motivation","Optimism",
-"Open-Mindedness","Originality","Passion","Performance","Personal Development","Peace","Perfection",
-"Playfulness","Popularity","Power","Preparedness","Proactivity","Proactive","Professionalism",
-"Punctuality","Quality","Recognition","Relationships","Reliability","Resilience","Resourcefulness",
-"Responsibility","Responsiveness","Risk Taking","Safety","Security","Self-Control","Selflessness",
-"Service","Simplicity","Spirituality","Stability","SuccessTeamwork","Thankfulness","Thoughtfulness",
-"Traditionalism","Trustworthiness","Understanding","Uniqueness","Usefulness","Versatility","Vision",
-"Warmth","Wealth","Well-Being","Wisdom","Zeal"]
-let selected = []
-let groups = [[], [], [], [], []]
-let labels = []
-let actions = []
-
-function goTo(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('visible'))
-  document.getElementById(id).classList.add('visible')
-  if (id === 'values') loadValues()
-  if (id === 'grouping') loadGrouping()
-  if (id === 'labels') loadLabelInputs()
-  if (id === 'actions') loadActionInputs()
-}
-
-function loadValues() {
-  let grid = document.getElementById('valuesGrid')
-  grid.innerHTML = ''
-  allValues.forEach(v => {
-    let card = document.createElement('div')
-    card.textContent = v
-    card.className = 'value-card'
-    card.onclick = () => toggleValue(v, card)
-    grid.appendChild(card)
-  })
-}
-
-function toggleValue(val, card) {
-  let idx = selected.indexOf(val)
-  if (idx < 0) {
-    selected.push(val)
-    card.classList.add('selected')
-  } else {
-    selected.splice(idx, 1)
-    card.classList.remove('selected')
-  }
-  document.getElementById('selectedCount').textContent = selected.length
-}
-
-function loadGrouping() {
-  const container = document.getElementById('groupsContainer');
-  container.innerHTML = '';
-  // Reset groups to empty, render UI
-  for(let i=0; i<5; i++) {
-      let div = document.createElement('div');
-      div.className = 'group-area';
-      div.innerHTML = `<strong>Group ${i+1}</strong>`;
-      div.ondrop = (event) => drop(event, i);
-      div.ondragover = (event) => allowDrop(event);
-      div.ondragleave = (event) => dragLeave(event);
-      div.id = `group-${i}`;
-      container.appendChild(div);
-  }
-  
-  const ungrouped = document.getElementById('ungroupedContainer');
-  ungrouped.innerHTML = '<strong>Ungrouped</strong><br>';
-  
-  // Render selected values
-  selected.forEach(val => {
-      let el = createDraggable(val);
-      let foundGroup = -1;
-      groups.forEach((g, idx) => {
-          if (g.includes(val)) foundGroup = idx;
-      });
-      
-      if (foundGroup > -1) {
-          document.getElementById(`group-${foundGroup}`).appendChild(el);
-      } else {
-          ungrouped.appendChild(el);
-      }
-  });
-  updateGroupsData();
-}
-
-function createDraggable(text) {
-    let div = document.createElement('div');
-    div.className = 'draggable';
-    div.draggable = true;
-    div.textContent = text;
-    div.id = 'drag-' + text.replace(/\s+/g, '-');
-    div.ondragstart = (ev) => {
-        ev.dataTransfer.setData("text", text);
-        ev.target.classList.add('dragging');
-    };
-    div.ondragend = (ev) => {
-        ev.target.classList.remove('dragging');
-    }
-    return div;
-}
-
-function allowDrop(ev) {
-    ev.preventDefault();
-    ev.currentTarget.classList.add('drag-over');
-}
-
-function dragLeave(ev) {
-    if (ev.currentTarget.contains(ev.relatedTarget)) return;
-    ev.currentTarget.classList.remove('drag-over');
-}
-
-function drop(ev, groupIndex) {
-    ev.preventDefault();
-    ev.currentTarget.classList.remove('drag-over');
-    var data = ev.dataTransfer.getData("text");
-    const draggedElement = document.getElementById('drag-' + data.replace(/\s+/g, '-'));
-    if (ev.currentTarget.contains(draggedElement)) return;
-    ev.currentTarget.appendChild(draggedElement);
-    updateGroupsData();
-}
-
-function updateGroupsData() {
-    groups = []; 
-    for(let i=0; i<5; i++) {
-        const g = document.getElementById(`group-${i}`);
-        if(g) {
-            const items = Array.from(g.getElementsByClassName('draggable')).map(el => el.textContent);
-            groups.push(items);
-        }
-    }
-}
-
-function loadLabelInputs() {
-  let container = document.getElementById('labelInputs')
-  container.innerHTML = ''
-  groups.forEach((g, i) => {
-    if(g.length === 0) return;
-    let div = document.createElement('div')
-    div.className = 'group-label-container'
-    div.innerHTML = `<p><strong>Group ${i + 1}:</strong></p>`
+    <h2>🌟 Why Core Compass?</h2>
+    <p>In a noisy world, it's easy to lose sight of what truly matters. Core Compass helps you tune out the distractions and tune into <em style="color: var(--primary);">you</em>. Whether you're at a crossroads, planning your next big career move, or simply seeking more clarity, this tool guides you through a proven process to identify what drives you.</p>
     
-    let optionsDiv = document.createElement('div')
-    g.forEach(val => {
-        let btn = document.createElement('button')
-        btn.textContent = val
-        btn.className = 'label-btn'
-        if(labels[i] === val) btn.classList.add('selected')
-        btn.onclick = () => selectLabel(i, val, btn, optionsDiv)
-        optionsDiv.appendChild(btn)
-    })
-    div.appendChild(optionsDiv)
-    container.appendChild(div)
-  })
-}
+    <ul>
+        <li><strong>Self-Discovery Made Simple</strong>: Effortless drag-and-drop interface.</li>
+        <li><strong>Action-Oriented</strong>: We don't just list values; we turn them into <em>verbs</em> so you can <code>Live</code>, <code>Practice</code>, and <code>Champion</code> them every day.</li>
+        <li><strong>100% Private</strong>: Your journey is yours alone. No data is stored, tracked, or sent to any server.</li>
+    </ul>
 
-function selectLabel(groupIndex, value, btn, container) {
-    labels[groupIndex] = value
-    // clear other selected in this group
-    Array.from(container.children).forEach(c => c.classList.remove('selected'))
-    btn.classList.add('selected')
-}
+    <h2>🚀 The Journey</h2>
+    <p>Your path to clarity happens in 5 exciting steps:</p>
+    <ol>
+        <li><strong>Discover</strong>: Browse a curated list of values and select the ones that spark joy and resonance.</li>
+        <li><strong>Organize</strong>: Drag and drop your values into meaningful clusters. See the patterns in your life emerge!</li>
+        <li><strong>Define</strong>: Crystallize your groups by choosing a "theme" word that captures the essence of each cluster.</li>
+        <li><strong>Activate</strong>: This is where the magic happens. Turn a static noun (e.g., "Creativity") into a dynamic power-statement (e.g., "Nurture Creativity").</li>
+        <li><strong>Manifest</strong>: Get your personalized Core Values Manifesto. Copy it, print it, stick it on your mirror!</li>
+    </ol>
 
-function loadActionInputs() {
-  let container = document.getElementById('actionInputs')
-  container.innerHTML = ''
-  const prefixes = ["Live", "Promote", "Practice", "Embrace", "Champion", "Prioritize", "Model", "Demonstrate"];
-  labels.forEach((lbl, i) => {
-    let div = document.createElement('div')
-    const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-    div.innerHTML = `
-      <p><strong>${lbl}</strong></p>
-      <input type="text" value="${actions[i] || ''}" placeholder="${randomPrefix} ${lbl}" oninput="actions[${i}] = this.value">`
-    container.appendChild(div)
-  })
-}
+    <h2>🛠️ Tech & Design</h2>
+    <p>Built with a focus on speed, aesthetics, and simplicity:</p>
+    <ul>
+        <li><strong>Vanilla HTML5, CSS3, ES6 JavaScript</strong>: No bloat, no frameworks, just pure performance.</li>
+        <li><strong>Glassmorphism UI</strong>: A serene, modern interface designed to keep you focused and calm.</li>
+        <li><strong>Draggable Interactions</strong>: Intuitive grouping that feels tangible and satisfying.</li>
+    </ul>
 
-function showSummary() {
-  goTo('summary')
-  let ul = document.getElementById('summaryList')
-  ul.innerHTML = ''
-  actions.forEach(a => {
-    let li = document.createElement('li')
-    li.textContent = a
-    ul.appendChild(li)
-  })
-}
+    <h2>💡 Inspiration</h2>
+    <p>This tool was inspired by the excellent exercise "Live Your Core Values To Increase Your Success" by <a href="https://taproot.com/live-your-core-values-exercise-to-increase-your-success/" target="_blank">TapRoot</a>. It builds upon those solid psychological foundations with a modern digital twist.</p>
 
-function copySummary() {
-  const list = document.getElementById('summaryList')
-  const text = Array.from(list.children).map(li => li.innerText).join('\n')
-  navigator.clipboard.writeText(text).then(() => {
-    alert('Values copied!')
-  })
-}
-</script>
+    <br>
+    <footer style="text-align: center; color: #9ca3af; font-size: 0.9em; margin-top: 2rem;">
+        &copy; Core Compass. Your values, your way.
+    </footer>
+</div>
 
 </body>
 </html>
